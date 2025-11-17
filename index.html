@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Symposium - Maraîchage sur petite surface</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    :root {
+      --bg: #f6f6f2;
+      --primary: #2f855a;
+      --primary-dark: #276749;
+      --accent: #dd6b20;
+      --text: #1a202c;
+      --muted: #4a5568;
+      --card-bg: #ffffff;
+      --border: #e2e8f0;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #e6fffa 0, #f6f6f2 45%, #f6f6f2 100%);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    header {
+      padding: 2.5rem 1.5rem 1.5rem;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 2.1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    header p.subtitle {
+      font-size: 1.05rem;
+      color: var(--muted);
+      margin: 0.25rem 0;
+    }
+
+    .tagline {
+      margin-top: 1rem;
+      font-style: italic;
+      color: var(--primary-dark);
+    }
+
+    main {
+      max-width: 960px;
+      margin: 0 auto 3rem;
+      padding: 0 1.5rem 2rem;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: 1rem;
+      border: 1px solid var(--border);
+      padding: 1.75rem 1.5rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.04);
+    }
+
+    .card h2 {
+      margin-top: 0;
+      font-size: 1.4rem;
+      border-left: 4px solid var(--primary);
+      padding-left: 0.75rem;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 1rem;
+      margin-top: 0.75rem;
+    }
+
+    .info-item strong {
+      display: block;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+      margin-bottom: 0.25rem;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.75rem 1.5rem;
+      border-radius: 999px;
+      border: none;
+      text-decoration: none;
+      font-weight: 600;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: #fff;
+      cursor: pointer;
+      box-shadow: 0 10px 25px rgba(56, 161, 105, 0.35);
+      transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 14px 30px rgba(56, 161, 105, 0.45);
+      filter: brightness(1.03);
+    }
+
+    .btn-primary:active {
+      transform: translateY(0);
+      box-shadow: 0 6px 16px rgba(56, 161, 105, 0.35);
+    }
+
+    .schedule-section + .schedule-section {
+      margin-top: 1.5rem;
+      padding-top: 1.25rem;
+      border-top: 1px dashed var(--border);
+    }
+
+    .schedule-section h3 {
+      margin: 0 0 0.75rem;
+      font-size: 1.15rem;
+      color: var(--primary-dark);
+      display: flex;
+      align-items: baseline;
+      gap: 0.4rem;
+    }
+
+    .schedule-section h3 span.label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+    }
+
+    .slot {
+      display: grid;
+      grid-template-columns: 90px 1fr;
+      gap: 0.75rem 1.25rem;
+      padding: 0.45rem 0.6rem;
+      border-radius: 0.65rem;
+      margin-bottom: 0.1rem;
+    }
+
+    .slot:nth-child(odd) {
+      background: rgba(237, 242, 247, 0.55);
+    }
+
+    .slot-time {
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .slot-content-main {
+      font-size: 0.97rem;
+    }
+
+    .slot-title {
+      font-weight: 600;
+    }
+
+    .slot-speaker {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .slot-note {
+      font-style: italic;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .footer-note {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-top: 0.75rem;
+    }
+
+    @media (max-width: 600px) {
+      header {
+        padding-top: 1.75rem;
+      }
+      header h1 {
+        font-size: 1.6rem;
+      }
+      .card {
+        padding: 1.25rem 1rem;
+      }
+      .slot {
+        grid-template-columns: 80px 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Symposium sur le maraîchage sur petite surface</h1>
+  <p class="subtitle">
+    Organisé par l’Institut Moreau &amp; Daverne, Jean-Michel Roy, Toits Vivants et Sony CSL
+  </p>
+  <p class="tagline">
+    Une journée de rencontres autour de la formation, des connaissances, des outils et des techniques.
+  </p>
+</header>
+
+<main>
+
+  <!-- Bloc informations pratiques + inscription -->
+  <section class="card" id="inscription">
+    <h2>Informations pratiques &amp; inscription</h2>
+
+    <div class="info-grid">
+      <div class="info-item">
+        <strong>Date</strong>
+        <span>15 janvier 2026</span>
+      </div>
+      <div class="info-item">
+        <strong>Lieu</strong>
+        <span>Ferme Ouverte - Saint-Denis</span>
+      </div>
+      <div class="info-item">
+        <strong>Public concerné</strong>
+        <span>Maraîchers, porteurs de projet, formateurs, chercheurs, acteurs de la transition agroécologique…</span>
+      </div>
+    </div>
+
+    <!-- Remplace l’URL ci-dessous par le lien vers ton formulaire -->
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLScencerrpdKYczEd9tEXr4GVfOhWyftXYstAFvkSBI2XnLTMQ/viewform?usp=header"
+       class="btn-primary"
+       target="_blank" rel="noopener">
+      S’inscrire à la journée
+    </a>
+
+    <p class="footer-note">
+      L’inscription est gratuite mais obligatoire. Le nombre de places étant limité, merci de vous inscrire le plus tôt possible.
+    </p>
+  </section>
+
+  <!-- Programme -->
+  <section class="card">
+    <h2>Programme de la journée</h2>
+
+    <!-- Accueil -->
+    <div class="schedule-section">
+      <div class="slot">
+        <div class="slot-time">9h30 – 9h45</div>
+        <div class="slot-content-main">
+          <div class="slot-title">Accueil</div>
+        </div>
+      </div>
+
+      <div class="slot">
+        <div class="slot-time">9h45 – 10h00</div>
+        <div class="slot-content-main">
+          <div class="slot-title">Mot de bienvenue</div>
+          <div class="slot-speaker">Xavier Laureau et Jean-Michel Roy</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Matin : formation & connaissances -->
+    <div class="schedule-section">
+      <h3>
+        Session du matin
+        <span class="label">Formation &amp; diffusion des connaissances</span>
+      </h3>
+
+      <div class="slot">
+        <div class="slot-time">10h00 – 10h20</div>
+        <div class="slot-content-main">
+          <div class="slot-title">Les neurosciences pour améliorer l’apprentissage</div>
+          <div class="slot-speaker">Florence Gaunet, CNRS, Aix-Marseille</div>
+        </div>
+      </div>
+
+      <div class="slot">
+        <div class="slot-time">10h20 – 10h40</div>
+        <div class="slot-content-main">
+          <div class="slot-title">Expériences et pratiques québécoises</div>
+          <div class="slot-speaker">Eric Duchemin, AU/LAB, Montréal</div>
+        </div>
+      </div>
+
+      <div class="slot">
+        <div class="slot-time">10h40 – 11h00</div>
+        <div class="slot-content-main">
+          <div class="slot-title">A confirmer</div>
+          <div class="slot-speaker">David Errera, Cycle Farm, Bruxelles</div>
+        </div>
+      </div>
+
+      <div class="slot">
+        <div class="slot-time">11h00 – 11h20</div>
+        <div class="slot-content-main">
+          <div class="slot-title">Pause</div>
+        </div>
+      </div>
+
+      <div class="slot">
+        <div class="slot-time">11h20 – 11h40</div>
+        <div class="slot-content-main">
+          <div class="slot-title">Retour d’expérience sur trois années de formation de l’Institut Moreau-Daverne</div>
+          <div class="slot-speaker">Christian Carnavalet, Institut Moreau-Daverne, Cannes</div>
+        </div>
+      </div>
+
+      <div class="slot">
+        <div class="slot-time">11h40 – 12h00</div>
+        <div class="slot-content-main">
+          <div class="slot-title">Diffusion des connaissances</div>
+          <div class="slot-speaker">Vincent Levasseur, Ver de Terre Production, Breteuil</div>
+        </div>
+      </div>
+
+      <div class="slot">
+        <div class="slot-time">12h00 – 12h40</div>
+        <div class="slot-content-main">
+          <div class="slot-title">Table ronde sur les enjeux de la formation et de la diffusion des connaissances</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Midi -->
+    <div class="schedule-section">
+      <div class="slot">
+        <div class="slot-time">12h40 – 13h40</div>
+        <div class="slot-content-main">
+          <div class="slot-title">Déjeuner</div>
+        </div>
+      </div>
+
+      <div class="slot">
+        <div class="slot-time">13h40 – 14h40</div>
+        <div class="slot-content-main">
+          <div class="slot-title">Visite de la ferme</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Après-midi : outils & techniques -->
+    <div class="schedule-section">
+      <h3>
+        Session de l’après-midi
+        <span class="label">Outils, gestes, techniques &amp; technologies</span>
+      </h3>
+
+      <div class="slot">
+        <div class="slot-time">14h40 – 15h00</div>
+        <div class="slot-content-main">
+          <div class="slot-title">Quelques exemples de technologies au service du maraîchage sur petite surface</div>
+          <div class="slot-speaker">Peter Hanappe &amp; David Colliaux, Sony CSL, Paris</div>
+        </div>
+      </div>
+
+      <div class="slot">
+        <div class="slot-time">15h00 – 15h20</div>
+        <div class="slot-content-main">
+          <div class="slot-title">Retour d’expérience sur le Campus de la transition</div>
+          <div class="slot-speaker">Timothée Vernier &amp; Matthieu Vergnol, Campus de la transition, Forges</div>
+        </div>
+      </div>
+
+      <div class="slot">
+        <div class="slot-time">15h20 – 15h40</div>
+        <div class="slot-content-main">
+          <div class="slot-title">Outils, gestes et techniques des maraîchers : les études de Maximilien Ringelman au début du XX<sup>e</sup> siècle</div>
+          <div class="slot-speaker">Jean-Michel Roy, chercheur indépendant, Var</div>
+        </div>
+      </div>
+
+      <div class="slot">
+        <div class="slot-time">15h40 – 16h00</div>
+        <div class="slot-content-main">
+          <div class="slot-title">Outillage</div>
+          <div class="slot-speaker">A confirmer</div>
+          <div class="slot-note">En cours de finalisation.</div>
+        </div>
+      </div>
+
+      <div class="slot">
+        <div class="slot-time">16h00 – 16h20</div>
+        <div class="slot-content-main">
+          <div class="slot-title">Pause</div>
+        </div>
+      </div>
+
+      <div class="slot">
+        <div class="slot-time">16h20 – 16h40</div>
+        <div class="slot-content-main">
+          <div class="slot-title">Diversité des fermes en agriculture urbaine</div>
+          <div class="slot-speaker">Agnès Lelièvre, INRAE, Versailles</div>
+        </div>
+      </div>
+
+      <div class="slot">
+        <div class="slot-time">16h40 – 17h40</div>
+        <div class="slot-content-main">
+          <div class="slot-title">Table ronde sur les enjeux des outils, des gestes, des techniques et de la technologie</div>
+        </div>
+      </div>
+
+      <div class="slot">
+        <div class="slot-time">17h40 – 18h00</div>
+        <div class="slot-content-main">
+          <div class="slot-title">Conclusion</div>
+          <div class="slot-speaker">Sébastien Goelzer, Toits Vivants, Paris</div>
+        </div>
+      </div>
+    </div>
+
+    <p class="footer-note">
+      Programme indicatif susceptible de légers ajustements.
+    </p>
+  </section>
+
+</main>
+
+</body>
+</html>
