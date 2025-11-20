@@ -28,26 +28,16 @@
       line-height: 1.6;
     }
 
+    /* --- header as banner --- */
     header {
-      padding: 2.5rem 1.5rem 1.5rem;
-      text-align: center;
+      margin: 0;
+      padding: 0;
     }
 
-    header h1 {
-      font-size: 2.1rem;
-      margin-bottom: 0.5rem;
-    }
-
-    header p.subtitle {
-      font-size: 1.05rem;
-      color: var(--muted);
-      margin: 0.25rem 0;
-    }
-
-    .tagline {
-      margin-top: 1rem;
-      font-style: italic;
-      color: var(--primary-dark);
+    header img.hero-banner {
+      display: block;
+      width: 100%;
+      height: auto;
     }
 
     main {
@@ -182,12 +172,6 @@
     }
 
     @media (max-width: 600px) {
-      header {
-        padding-top: 1.75rem;
-      }
-      header h1 {
-        font-size: 1.6rem;
-      }
       .card {
         padding: 1.25rem 1rem;
       }
@@ -200,13 +184,11 @@
 <body>
 
 <header>
-  <h1>Symposium sur le maraîchage sur petite surface</h1>
-  <p class="subtitle">
-    Organisé par l’Institut Moreau &amp; Daverne, Jean-Michel Roy, Toits Vivants et Sony CSL
-  </p>
-  <p class="tagline">
-    Une journée de rencontres autour de la formation, des connaissances, des outils et des techniques.
-  </p>
+  <!-- Banner image instead of text title -->
+  <img
+    class="hero-banner"
+    src="Symposium_BanniereWEB2.png"
+    alt="Symposium 2026 - Maraîchage sur petite surface">
 </header>
 
 <main>
@@ -230,7 +212,6 @@
       </div>
     </div>
 
-    <!-- Remplace l’URL ci-dessous par le lien vers ton formulaire -->
     <a href="https://docs.google.com/forms/d/e/1FAIpQLScencerrpdKYczEd9tEXr4GVfOhWyftXYstAFvkSBI2XnLTMQ/viewform?usp=header"
        class="btn-primary"
        target="_blank" rel="noopener">
@@ -393,28 +374,29 @@
           Session de l’après-midi II
           <span class="label">Agriculture urbaine</span>
         </h3>
-  
-      <div class="slot">
-        <div class="slot-time">17h00 – 17h20</div>
-        <div class="slot-content-main">
-          <div class="slot-title">Diversité des fermes en agriculture urbaine</div>
-          <div class="slot-speaker">Agnès Lelièvre, INRAE, Versailles</div>
-        </div>
-      </div>
 
-      <div class="slot">
-        <div class="slot-time">17h20 – 17h40</div>
-        <div class="slot-content-main">
-          <div class="slot-title">Réseaux d’agriculture urbaine et diffusion des pratiques</div>
-          <div class="slot-speaker">Marie Fiers, AFAUP, Paris</div>
+        <div class="slot">
+          <div class="slot-time">17h00 – 17h20</div>
+          <div class="slot-content-main">
+            <div class="slot-title">Diversité des fermes en agriculture urbaine</div>
+            <div class="slot-speaker">Agnès Lelièvre, INRAE, Versailles</div>
+          </div>
         </div>
-      </div>
 
-      <div class="slot">
-        <div class="slot-time">17h40 – 18h00</div>
-        <div class="slot-content-main">
-          <div class="slot-title">Conclusion de la journée</div>
-          <div class="slot-speaker">Sébastien Goelzer, Toits Vivants, Paris</div>
+        <div class="slot">
+          <div class="slot-time">17h20 – 17h40</div>
+          <div class="slot-content-main">
+            <div class="slot-title">Réseaux d’agriculture urbaine et diffusion des pratiques</div>
+            <div class="slot-speaker">Marie Fiers, AFAUP, Paris</div>
+          </div>
+        </div>
+
+        <div class="slot">
+          <div class="slot-time">17h40 – 18h00</div>
+          <div class="slot-content-main">
+            <div class="slot-title">Conclusion de la journée</div>
+            <div class="slot-speaker">Sébastien Goelzer, Toits Vivants, Paris</div>
+          </div>
         </div>
       </div>
     </div>
